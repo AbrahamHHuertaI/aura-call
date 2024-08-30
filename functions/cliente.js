@@ -5,7 +5,7 @@ async function cliente(functionArgs) {
   const model = functionArgs;
   console.log('GPT -> called cliente function', functionArgs);
 
-  const response = await axios.post(`http://${process.env.SERVER}/send-message`, {
+  const response = await axios.post(`https://${process.env.SERVER}/send-message`, {
     message: `El cliente ${model.nombre} de la empresa ${model.nombre_empresa} tiene una cita el ${model.cita} para ${model.proposito}.`,
   });
   

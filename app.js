@@ -32,7 +32,7 @@ bot.hears('llama', async (ctx) => {
 
   await client.calls
     .create({
-      url: `http://${process.env.SERVER}/incoming`,
+      url: `https://${process.env.SERVER}/incoming`,
       to: process.env.YOUR_NUMBER,
       from: process.env.FROM_NUMBER
     })
