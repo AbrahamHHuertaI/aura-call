@@ -39,6 +39,22 @@ bot.hears('llama', async (ctx) => {
     .then(call => console.log(call.sid));
 })
 bot.launch()
+app.post('/call', async (req, res) => {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  
+  const client = require('twilio')(accountSid, authToken);
+
+  await client.calls
+    .create({
+      url: `https://${process.env.SERVER}/incoming`,
+      to: process.env.YOUR_NUMBER,
+      from: process.env.FROM_NUMBER
+    })
+    .then(call => console.log(call.sid));
+
+  res.json({ message: 'Llamando' });
+});
 app.post('/incoming', (req, res) => {
   try {
     const response = new VoiceResponse();
